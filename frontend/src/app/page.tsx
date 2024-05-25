@@ -160,11 +160,11 @@ export default function LoginForm() {
       })
       setDownloadUrl(response.data.url);
       setShowAlert(true);
-    } catch (error:str) {
+    } catch (error) {
         console.error('Error downloading song:', error);
         toast({
           title: "Error downloading song",
-          description: error.message,
+          description: (error as Error).message,
         })
     } finally {
       setIsLoading(false);

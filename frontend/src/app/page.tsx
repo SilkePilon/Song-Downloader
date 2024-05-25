@@ -377,7 +377,7 @@ export default function LoginForm() {
                       {/* <AlertDialogTrigger>Open</AlertDialogTrigger> */}
                       <AlertDialogContent>
                         <AlertDialogHeader>
-                          <AlertDialogTitle>Search results for "{`${query}`}"</AlertDialogTitle>
+                          <AlertDialogTitle>Search results for &quot;{`${query}`}&quot;</AlertDialogTitle>
                           <AlertDialogDescription>
                             Please select the song you want to download by pressing on it. Then change the settings if needed and hit "Download"
                           </AlertDialogDescription>

@@ -98,10 +98,10 @@ export default function LoginForm() {
   const [showAlert, setShowAlert] = useState(false);
   const [apiEndpoint, setApiEndpoint] = useState('');
   const [showDialog, setShowDialog] = useState(false);
-  let endpoint = '';
+  let endpoint:string = '';
   const { toast } = useToast()
 
-  function normalizeEndpoint(endpoint) {
+  function normalizeEndpoint(endpoint:string) {
     // Check if the endpoint is a non-empty string
     if (typeof endpoint === 'string' && endpoint.length > 0) {
       // Replace 'https' with 'http'
@@ -117,26 +117,26 @@ export default function LoginForm() {
       title: "API endpoint set!",
       description: `${endpoint}`,
     })
-    return endpoint
+    setApiEndpoint(endpoint);
   }
 
   useEffect(() => {
     const storedApiEndpoint = Cookies.get('apiEndpoint');
     if (storedApiEndpoint) {
-      endpoint = normalizeEndpoint(storedApiEndpoint);
+      normalizeEndpoint(storedApiEndpoint);
 
-      setApiEndpoint(endpoint);
     } else {
       setShowDialog(true);
     }
   }, []);
 
   const handleSubmit = () => {
-    const endpoint2 = document.getElementById('apiendpoint').value;
-    endpoint = normalizeEndpoint(endpoint2)
+    const endpointElement = document.getElementById('apiendpoint') as HTMLInputElement;
+    const endpoint2 = endpointElement ? endpointElement.value : '';
+    normalizeEndpoint(endpoint2)
     
-    setApiEndpoint(`${endpoint}`);
-    Cookies.set('apiEndpoint', `${endpoint}`, { expires: 365 }); // Set cookie to expire in 1 year
+    setApiEndpoint(`${apiEndpoint}`);
+    Cookies.set('apiEndpoint', `${apiEndpoint}`, { expires: 365 }); // Set cookie to expire in 1 year
     setShowDialog(false);
   };
   const handleDownload = async (e:any) => {

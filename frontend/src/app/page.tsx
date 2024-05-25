@@ -1,4 +1,3 @@
-/* eslint no-use-before-define: 0 */  // --> OFF
 "use client";
 
 import Link from "next/link";

@@ -193,37 +193,40 @@ export default function LoginForm() {
     }
   }, [query]);
 
-  const handleQueryChange = any => {
-    const inputElement = document.getElementById('song');
-    const inputText = inputElement.value;
+  const handleQueryChange = () => {
+    const inputElement = document.getElementById('song') as HTMLInputElement;
+    const inputText = inputElement ? inputElement.value : '';
     setQuery(inputText);
     setshowSearchResults(true)
   };
 
-  const setdownload = (name, artist, album, duration) => {
+  const setdownload = (name:string, artist:string, album:string, duration:string) => {
     console.log(artist)
-    const songTitle = document.getElementById('song-title').value = name;
-    const songArtist = document.getElementById('song-artist').value = artist;
-    // const inputElement = document.getElementById('song-artist').value = artist;
+    const songTitleElement = document.getElementById('song-title') as HTMLInputElement;
+    const songArtistElement = document.getElementById('song-artist') as HTMLInputElement;
+    if (songTitleElement && songArtistElement) {
+      songTitleElement.value = name;
+      songArtistElement.value = artist;
+    }
     setBitrate("=320")
     setSongTitle(name)
     setSongArtist(artist)
     setshowSearchResults(false)
   };
 
-  function msToMinutesAndSeconds(ms) {
-    const minutes = Math.floor(ms / 60000); // Get the number of full minutes
-    const seconds = Math.floor((ms % 60000) / 1000); // Get the remaining seconds
+  function msToMinutesAndSeconds(ms: number): string {
+    const minutes: number = Math.floor(ms / 60000); // Get the number of full minutes
+    const seconds: number = Math.floor((ms % 60000) / 1000); // Get the remaining seconds
   
     // Format the output string
-    const minutesStr = minutes.toString().padStart(2, '0');
-    const secondsStr = seconds.toString().padStart(2, '0');
+    const minutesStr: string = minutes.toString().padStart(2, '0');
+    const secondsStr: string = seconds.toString().padStart(2, '0');
   
     return `${minutesStr}:${secondsStr}`;
   }
 
   const renderTableRows = () => {
-    return Object.entries(searchResults).map(([name, [artist, album, duration]]) => (
+    return Object.entries(searchResults as Record<string, [string, string, string]>).map(([name, [artist, album, duration]]) => (
       <TableRow key={name} onClick={() => { setdownload(name, artist, album, duration); }}>
         <TableCell className="font-medium">{name}</TableCell>
         <TableCell>{artist}</TableCell>

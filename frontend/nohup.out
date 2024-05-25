@@ -1,0 +1,27 @@
+
+> my-app@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1984ms
+ ○ Compiling / ...
+ ✓ Compiled / in 4.4s (910 modules)
+ GET / 200 in 4873ms
+ ✓ Compiled in 362ms (423 modules)
+ GET / 200 in 33ms
+ ✓ Compiled /favicon.ico in 360ms (508 modules)
+ GET /favicon.ico 200 in 6ms
+[?25h
+
+> my-app@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+[?25h

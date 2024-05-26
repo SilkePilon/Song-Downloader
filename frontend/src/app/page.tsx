@@ -107,16 +107,17 @@ export default function LoginForm() {
     // Check if the endpoint is a non-empty string
     if (typeof endpoint === 'string' && endpoint.length > 0) {
       // Replace 'https' with 'http'
-      endpoint = endpoint.replace(/^https:/i, 'http:');
-      endpoint = endpoint.replace(/^Http:/i, 'http:');
+      // endpoint = endpoint.replace(/^https:/i, 'http:');
+      // endpoint = endpoint.replace(/^Http:/i, 'http:');
       // // Check if the last character is not a forward slash
       // if (endpoint.charAt(endpoint.length - 1) !== '/') {
       //   // Append a forward slash to the endpoint
+      return endpoint; // Return the normalized endpoint
       //   endpoint += '/';
       // }
+    } else {
+      return ""
     }
-  
-    return endpoint; // Return the normalized endpoint
   }
 
   useEffect(() => {

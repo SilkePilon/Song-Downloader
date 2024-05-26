@@ -456,7 +456,7 @@ export default function LoginForm() {
                       </AlertDialogContent>
                     </AlertDialog>
                     <Button type="button" onClick={handleDownload} className="w-full" disabled={isLoading}>
-                      {isLoading ? 'Downloading...' : 'Download (.mp3)'}
+                      {isLoading ? 'Downloading...' : 'Download'}
                     </Button>
                       
                       <AlertDialog open={showAlert}>

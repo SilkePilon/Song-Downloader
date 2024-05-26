@@ -160,7 +160,7 @@ async def download_song(
     time.sleep(2)
     pyautogui.hotkey('ctrl', 'f')
     # if use_text_filter:
-    #     pyautogui.write(song_name) # text filter
+    pyautogui.write(song_name) # text filter
     time.sleep(1)
 
     pyautogui.press('tab', presses=2, interval=0.1)
@@ -239,7 +239,7 @@ async def download_song(
                         song_path, "download_ready/" + new_filename)
                     print(f"Downloaded {title} by {artist} ({bitrate} kbps)")
                     queue = False
-                    return {"message": "Song downloaded successfully", "url": "http://192.168.2.162:8000/download/" + urllib.parse.quote(new_filename)}
+                    return {"message": "Song downloaded successfully", "url": "/download/" + urllib.parse.quote(new_filename)}
 
                 if file.lower().endswith(('.flac')):
                     song_path = os.path.join(root, file)

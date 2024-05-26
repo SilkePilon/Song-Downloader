@@ -112,6 +112,7 @@ export default function LoginForm() {
       // // Check if the last character is not a forward slash
       // if (endpoint.charAt(endpoint.length - 1) !== '/') {
       //   // Append a forward slash to the endpoint
+      endpoint = endpoint.replace(/\/$/, '')
       return endpoint; // Return the normalized endpoint
       //   endpoint += '/';
       // }
@@ -506,7 +507,7 @@ export default function LoginForm() {
               <Card className="mx-auto max-w-sm">
                 <CardHeader>
                   <CardTitle className="text-xl">
-                    Song Downloader (advanced)
+                    Song Downloader (advanced) NOT WORKING ATM
                   </CardTitle>
                   <CardDescription>
                   Song Downloader (advanced) allows you to download entier Spotify playlists in high quality.

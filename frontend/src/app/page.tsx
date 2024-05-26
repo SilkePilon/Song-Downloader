@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { MoonIcon, SunIcon, GearIcon, FileIcon, DownloadIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +12,8 @@ import {
   CardFooter,
   CardTitle,
 } from "@/components/ui/card";
+import AudioPlayer from 'react-h5-audio-player';
+import './exstra_styles.css';
 import {
   Sheet,
   SheetContent,
@@ -106,7 +108,7 @@ export default function LoginForm() {
     if (typeof endpoint === 'string' && endpoint.length > 0) {
       // Replace 'https' with 'http'
       endpoint = endpoint.replace(/^https:/i, 'http:');
-  
+      endpoint = endpoint.replace(/^Http:/i, 'http:');
       // // Check if the last character is not a forward slash
       // if (endpoint.charAt(endpoint.length - 1) !== '/') {
       //   // Append a forward slash to the endpoint
@@ -127,6 +129,13 @@ export default function LoginForm() {
       setShowDialog(true);
     }
   }, []);
+
+  const handlereset = () => {
+    
+    setApiEndpoint("");
+    Cookies.set('apiEndpoint', "", { expires: 1649019007 }); // Set cookie to expire in 1 year
+    setShowDialog(true);
+  };
 
   const handleSubmit = () => {
     const endpointElement = document.getElementById('apiendpoint') as HTMLInputElement;
@@ -272,27 +281,48 @@ export default function LoginForm() {
           </AlertDialogContent>
         </AlertDialog>
       )}
-        <div style={{ marginBottom: "20px", marginTop: "10px" }}>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                Light
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                Dark
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ marginBottom: "20px", marginTop: "10px", display: "flex", alignItems: "center", gap: "10px" }}>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <InputOTPSeparator />
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <GearIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100" />
+                  <span className="sr-only">Toggle settings</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => handlereset()}>
+                  Reset
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => open("https://github.com/SilkePilon/Song-Downloader", "_blank")}>
+                  About
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </center>
       <center>
@@ -436,11 +466,21 @@ export default function LoginForm() {
                             <AlertDialogDescription>
                             {songTitle} has been downloaded successfully.
                             Thank you for using Song Downloader!
+                            <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                              <Separator hidden/>
+                            </div>
+                            <AudioPlayer
+                              autoPlay
+                              src={downloadUrl}
+                              onPlay={e => console.log("onPlay")}
+                              showSkipControls={false}
+
+                            />
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
                             <a href={downloadUrl} download>
-                              <Button>Download</Button>
+                              <Button>Download <DownloadIcon style={{marginLeft: "5px"}} className="h-[1rem] w-[1rem] rotate-0 scale-100" /></Button>
                             </a>
                             {/* <AlertDialogAction>Continue</AlertDialogAction> */}
                             <AlertDialogCancel onClick={() => { setShowAlert(false); setDownloadUrl(''); }}>

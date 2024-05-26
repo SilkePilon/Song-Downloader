@@ -259,7 +259,7 @@ export default function LoginForm() {
                   <div style={{ marginTop: "10px", marginBottom: "10px" }}>
                     <Separator />
                   </div>
-                  This project requers an selfhosted backend. You can find instructions on how to host it yourself on the github page: <a style={{textDecorationLine: 'underline'}} href="https://github.com/SilkePilon/Song-Downloader">https://github.com/SilkePilon/Song-Downloader</a>
+                  This project requires an selfhosted backend. You can find instructions on how to host it yourself on the github page: <a style={{textDecorationLine: 'underline'}} href="https://github.com/SilkePilon/Song-Downloader">https://github.com/SilkePilon/Song-Downloader</a>
                   <div style={{ marginTop: "10px", marginBottom: "10px" }}>
                     <Separator />
                   </div>

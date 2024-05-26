@@ -128,5 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-backend/download_ready
-backend/unsorted_songs
+backend/download_ready/*
+backend/unsorted_songs/*
+backend/download_ready/Portugal. The Man - Feel It Still.mp3

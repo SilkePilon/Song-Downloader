@@ -101,7 +101,7 @@ export default function LoginForm() {
   let endpoint:string = '';
   const { toast } = useToast()
 
-  function normalizeEndpoint(endpoint:string) {
+  function normalizeEndpoint(endpoint: string) {
     // Check if the endpoint is a non-empty string
     if (typeof endpoint === 'string' && endpoint.length > 0) {
       // Replace 'https' with 'http'
@@ -113,18 +113,16 @@ export default function LoginForm() {
       //   endpoint += '/';
       // }
     }
-    toast({
-      title: "API endpoint set!",
-      description: `${endpoint}`,
-    })
-    setApiEndpoint(endpoint);
+  
+    return endpoint; // Return the normalized endpoint
   }
 
   useEffect(() => {
     const storedApiEndpoint = Cookies.get('apiEndpoint');
+  
     if (storedApiEndpoint) {
-      normalizeEndpoint(storedApiEndpoint);
-
+      const normalizedEndpoint = normalizeEndpoint(storedApiEndpoint);
+      setApiEndpoint(normalizedEndpoint); // Assign the normalized endpoint to state
     } else {
       setShowDialog(true);
     }
@@ -133,10 +131,10 @@ export default function LoginForm() {
   const handleSubmit = () => {
     const endpointElement = document.getElementById('apiendpoint') as HTMLInputElement;
     const endpoint2 = endpointElement ? endpointElement.value : '';
-    normalizeEndpoint(endpoint2)
+    endpoint = normalizeEndpoint(endpoint2)
     
-    setApiEndpoint(`${apiEndpoint}`);
-    Cookies.set('apiEndpoint', `${apiEndpoint}`, { expires: 365 }); // Set cookie to expire in 1 year
+    setApiEndpoint(endpoint);
+    Cookies.set('apiEndpoint', endpoint, { expires: 365 }); // Set cookie to expire in 1 year
     setShowDialog(false);
   };
   const handleDownload = async (e:any) => {
@@ -302,17 +300,28 @@ export default function LoginForm() {
               <CardContent>
               <div style={{marginBottom: "3vh"}} className="grid gap-2">
                       <Label htmlFor="search">Search (press enter to search)</Label>
-                      <Input
-                        id="song"
-                        placeholder="Blue Monday"
-                        type="text"
- 
-                        onKeyDown={(e) => {if (e.key === 'Enter') {
-                          handleQueryChange()
+                      <div style={{display: "inline-block", position: "relative"}} className="relative">
+                        <Input
+                          id="song"
+                          placeholder="Blue Monday"
+                          type="text"
+  
+                          onKeyDown={(e) => {if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleQueryChange()
+                            
+                          }}}
+
+                          onBlur={(e) =>  {
+                            e.preventDefault();
+                            handleQueryChange()
+                            
+                          }}
+
                           
-                        }}}
-                        
-                      />
+                        />
+                        <span style={{position: 'absolute', right: 0}}>🔍</span>
+                      </div>
 
                     </div>
                     <div style={{ marginTop: "3vh", marginBottom: "3vh" }}>

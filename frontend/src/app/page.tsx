@@ -74,7 +74,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-
+import { Badge } from "@/components/ui/badge"
 import {
   Select,
   SelectContent,
@@ -242,16 +242,28 @@ export default function LoginForm() {
           <AlertDialogTrigger>Open</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Enter API Endpoint</AlertDialogTitle>
-              <AlertDialogDescription>
-                Please enter the API endpoint for your application.
-              </AlertDialogDescription>
-              <Input
-                        id="apiendpoint"
-                        placeholder="http://*.*.*.*:8000/"
-                        type="text"
- 
-                      />
+              <center>
+                <AlertDialogTitle style={{marginBottom: "10px" }}>Welcome to Song Downloader  <Badge variant="secondary">beta</Badge></AlertDialogTitle>
+                <AlertDialogDescription>
+                  This project provides a user-friendly website that allows you to search for songs using the Spotify API, and then download them in high-quality 320kbps MP3 or FLAC format from the SoulSeek network.
+                  <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                    <Separator />
+                  </div>
+                  This project requers an selfhosted backend. You can find instructions on how to host it yourself on the github page: <a style={{textDecorationLine: 'underline'}} href="https://github.com/SilkePilon/Song-Downloader">https://github.com/SilkePilon/Song-Downloader</a>
+                  <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                    <Separator />
+                  </div>
+                </AlertDialogDescription>
+
+                <label htmlFor="apiendpoint">Please enter the API endpoint:</label>
+                <Input
+                          id="apiendpoint"
+                          placeholder="http://*.*.*.*:8000/"
+                          type="text"
+                          // disabled={true}
+  
+                        />
+              </center>
             </AlertDialogHeader>
             <AlertDialogFooter>
               {/* <AlertDialogCancel onClick={() => setShowDialog(false)}>Cancel</AlertDialogCancel> */}
@@ -320,7 +332,7 @@ export default function LoginForm() {
 
                           
                         />
-                        <span style={{position: 'absolute', right: 0}}>🔍</span>
+                        
                       </div>
 
                     </div>
@@ -335,7 +347,7 @@ export default function LoginForm() {
                         id="song-title"
                         placeholder="Blue Monday"
                         type="text"
- 
+                        onChange={(e) => setSongTitle(e.target.value)}
                         required
                       />
 

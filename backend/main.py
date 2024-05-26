@@ -120,7 +120,7 @@ async def search(query: str = Query(...)):
         raise HTTPException(
             status_code=400, detail="Query cannot be empty.")
     else:
-        search_results = SP.search(q=query, limit=7)
+        search_results = SP.search(q=query, limit=5)
         
         sorted_result = {}
         for result in search_results["tracks"]["items"]:

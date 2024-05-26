@@ -249,7 +249,7 @@ export default function LoginForm() {
       <center>
       {showDialog && (
         <AlertDialog open={showDialog}>
-          <AlertDialogTrigger>Open</AlertDialogTrigger>
+          <AlertDialogTrigger hidden>Open</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <center>

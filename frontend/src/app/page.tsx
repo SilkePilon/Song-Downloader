@@ -472,7 +472,7 @@ export default function LoginForm() {
                             </div>
                             <AudioPlayer
                               autoPlay
-                              src={downloadUrl}
+                              src={apiEndpoint + downloadUrl}
                               onPlay={e => console.log("onPlay")}
                               showSkipControls={false}
 
@@ -480,7 +480,7 @@ export default function LoginForm() {
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <a href={downloadUrl} download>
+                            <a href={apiEndpoint + downloadUrl} download>
                               <Button>Download <DownloadIcon style={{marginLeft: "5px"}} className="h-[1rem] w-[1rem] rotate-0 scale-100" /></Button>
                             </a>
                             {/* <AlertDialogAction>Continue</AlertDialogAction> */}

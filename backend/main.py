@@ -248,7 +248,7 @@ async def download_song(
                         song_path, "download_ready/" + file)
                     print(f"Downloaded {file}")
                     queue = False
-                    return {"message": "Song downloaded successfully", "url": "http://192.168.2.162:8000/download/" + urllib.parse.quote(file)}
+                    return {"message": "Song downloaded successfully", "url": "/download/" + urllib.parse.quote(file)}
 
                 else:
                     time.sleep(1)
